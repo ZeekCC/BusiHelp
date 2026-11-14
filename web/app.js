@@ -93,13 +93,14 @@
 
     return {
       push(chunk) {
-        if (finished || !chunk) return;
+        const text = (chunk || '').replace(/\*/g, '');
+        if (finished || !text) return;
         if (dots) {
           dots.remove();
           dots = null;
         }
         node.caret.style.display = '';
-        queue += chunk;
+        queue += text;
         if (timer === null) timer = setTimeout(pump, 0);
       },
       complete() {
@@ -122,7 +123,30 @@
     };
   }
 
-  async function streamChat(message, typewriter) {
+  function showToolBadge(node, payload) {
+    let chip = node.bubble.querySelector('.tool-chip');
+    if (!chip) {
+      chip = document.createElement('div');
+      chip.className = 'tool-chip';
+      chip.innerHTML =
+        '<span class="tool-dot"></span>' +
+        '<span class="tool-name"></span>' +
+        '<span class="tool-state"></span>';
+      node.bubble.insertBefore(chip, node.textEl);
+    }
+    chip.querySelector('.tool-name').textContent = payload.name || 'tool';
+    const state = chip.querySelector('.tool-state');
+    if (payload.phase === 'start') {
+      chip.classList.add('running');
+      state.textContent = '调用中';
+    } else {
+      chip.classList.remove('running');
+      chip.classList.toggle('failed', !payload.ok);
+      state.textContent = payload.ok ? '已返回' : '失败';
+    }
+  }
+
+  async function streamChat(message, typewriter, node) {
     controller = new AbortController();
     const response = await fetch('/chat/stream', {
       method: 'POST',
@@ -160,6 +184,8 @@
         sessionId = payload.session_id || sessionId;
       } else if (eventName === 'token') {
         typewriter.push(payload.content || '');
+      } else if (eventName === 'tool') {
+        showToolBadge(node, payload);
       } else if (eventName === 'done') {
         typewriter.complete();
       } else if (eventName === 'error') {
@@ -202,7 +228,7 @@
     const typewriter = attachTypewriter(node, dots);
 
     try {
-      await streamChat(message, typewriter);
+      await streamChat(message, typewriter, node);
     } catch (error) {
       if (error && error.name === 'AbortError') {
         endStream();

@@ -3,3 +3,6 @@ uvicorn[standard]==0.54.0
 langchain-core==1.8.0
 langchain-openai==1.8.0
 python-dotenv==1.2.4
+sqlalchemy==2.1.8
+pymysql==1.2.4
+cryptography==50.0.2

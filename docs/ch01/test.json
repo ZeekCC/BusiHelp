@@ -1,0 +1,686 @@
+{
+  "id": "2360c5f5-8863-403a-af19-5bd0ee8a34de",
+  "revision": 0,
+  "last_node_id": 93,
+  "last_link_id": 117,
+  "nodes": [
+    {
+      "id": 72,
+      "type": "CheckpointLoaderSimple",
+      "pos": [16.649611533927, 52.9274309963442],
+      "size": [273.4576171875, 98],
+      "flags": {
+
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [109]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [94, 95]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "CheckpointLoaderSimple",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [
+        "1.5动漫/AWPainting_v1.2.safetensors"
+      ],
+      "widgets_values_named": {
+        "ckpt_name": "1.5动漫/AWPainting_v1.2.safetensors"
+      }
+    },
+    {
+      "id": 74,
+      "type": "VAELoader",
+      "pos": [-215.541261268311, 278.6124733237],
+      "size": [270, 58],
+      "flags": {
+
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [115, 117]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "VAELoader",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [
+        "vae-ft-mse-840000-ema-pruned.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "vae-ft-mse-840000-ema-pruned.safetensors"
+      }
+    },
+    {
+      "id": 75,
+      "type": "LoadImage",
+      "pos": [-409.712667272574, 374.63504132218],
+      "size": [270, 314],
+      "flags": {
+
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [84, 87, 111]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [112]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        },
+        "guhaiImageValue": "clipspace-painted-masked-1794495815406.png [input]",
+        "image": "clipspace-painted-masked-1794495815406.png [input]"
+      },
+      "widgets_values": [
+        "clipspace-painted-masked-1794495815406.png [input]",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "clipspace-painted-masked-1794495815406.png [input]",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 76,
+      "type": "WD14Tagger|pysssss",
+      "pos": [-587.574760067906, 274.23181982712],
+      "size": [276.810546875, 220],
+      "flags": {
+
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 84
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": [85]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-wd14-tagger",
+        "ver": "9e0a6e700299182fc05c58b62e7ad9f72182a78b",
+        "Node name for S&R": "WD14Tagger|pysssss",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [
+        "wd-v1-4-moat-tagger-v2",
+        0.35, 0.85, false, false, "",
+        "1girl, solo, long_hair, looking_at_viewer, blush, bangs, skirt, red_eyes, white_background, dress, hair_between_eyes, bare_shoulders, brown_eyes, jewelry, collarbone, earrings, parted_lips, necklace, off_shoulder, :o, bracelet, see-through, gradient, gradient_background, pink_background, light_brown_hair, gem, pendant, glint"
+      ],
+      "widgets_values_named": {
+        "model": "wd-v1-4-moat-tagger-v2",
+        "threshold": 0.35,
+        "character_threshold": 0.85,
+        "replace_underscore": false,
+        "trailing_comma": false,
+        "exclude_tags": "",
+        "tags": "1girl, solo, long_hair, looking_at_viewer, blush, bangs, skirt, red_eyes, white_background, dress, hair_between_eyes, bare_shoulders, brown_eyes, jewelry, collarbone, earrings, parted_lips, necklace, off_shoulder, :o, bracelet, see-through, gradient, gradient_background, pink_background, light_brown_hair, gem, pendant, glint"
+      }
+    },
+    {
+      "id": 81,
+      "type": "ShowText|pysssss",
+      "pos": [-358.459677456326, 23.7452920753843],
+      "size": [360.551261530218, 173.360470087831],
+      "flags": {
+
+      },
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 85
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "f2838ed5e59de4d73cde5c98354b87a8d3200190",
+        "Node name for S&R": "ShowText|pysssss",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [
+        "1girl, solo, long_hair, looking_at_viewer, blush, bangs, skirt, red_eyes, white_background, dress, hair_between_eyes, bare_shoulders, brown_eyes, jewelry, collarbone, earrings, parted_lips, necklace, off_shoulder, :o, bracelet, see-through, gradient, gradient_background, pink_background, light_brown_hair, gem, pendant, glint"
+      ],
+      "widgets_values_named": {
+        "text_0": "1girl, solo, long_hair, looking_at_viewer, blush, bangs, skirt, red_eyes, white_background, dress, hair_between_eyes, bare_shoulders, brown_eyes, jewelry, collarbone, earrings, parted_lips, necklace, off_shoulder, :o, bracelet, see-through, gradient, gradient_background, pink_background, light_brown_hair, gem, pendant, glint"
+      }
+    },
+    {
+      "id": 82,
+      "type": "CLIPTextEncode",
+      "pos": [291.805904942776, 125.932799280393],
+      "size": [314.816044311523, 119.656007385254],
+      "flags": {
+
+      },
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 95
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [106]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "CLIPTextEncode",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [
+        "pink color",
+        true],
+      "widgets_values_named": {
+        "text": "pink color",
+        "speak_and_recognation": true
+      }
+    },
+    {
+      "id": 83,
+      "type": "KSampler",
+      "pos": [1044.27503917303, 171.039003049407],
+      "size": [303.440026855469, 307.760006713867],
+      "flags": {
+
+      },
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 110
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 107
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 108
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 116
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [97]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [193216660599520, "randomize",
+        20, 8, "euler",
+        "simple",
+        1],
+      "widgets_values_named": {
+        "seed": 193216660599520,
+        "control_after_generate": "randomize",
+        "steps": 20,
+        "cfg": 8,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1
+      }
+    },
+    {
+      "id": 84,
+      "type": "CLIPTextEncode",
+      "pos": [263.604401372852, 302.80647141051],
+      "size": [371.927911376953, 142.888022155762],
+      "flags": {
+
+      },
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 94
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [104]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "CLIPTextEncode",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [
+        "",
+        true],
+      "widgets_values_named": {
+        "text": "",
+        "speak_and_recognation": true
+      }
+    },
+    {
+      "id": 86,
+      "type": "PreviewImage",
+      "pos": [83.5923714442448, 579.807530620313],
+      "size": [140, 246],
+      "flags": {
+
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 87
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "PreviewImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {
+
+      }
+    },
+    {
+      "id": 87,
+      "type": "VAEDecode",
+      "pos": [1508.34104067116, 157.304557298514],
+      "size": [140, 46],
+      "flags": {
+
+      },
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 97
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 117
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [98]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "VAEDecode",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      }
+    },
+    {
+      "id": 88,
+      "type": "SaveImage",
+      "pos": [1385.31313451296, 335.449849869],
+      "size": [270, 270],
+      "flags": {
+
+      },
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 98
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.43.2",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          },
+          "version": "7.0.1"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "ComfyUI"
+      }
+    },
+    {
+      "id": 91,
+      "type": "BrushNet",
+      "pos": [714.129169359614, 178.253561988146],
+      "size": [270, 226],
+      "flags": {
+
+      },
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 109
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 115
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 111
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 112
+        },
+        {
+          "name": "brushnet",
+          "type": "BRMODEL",
+          "link": 113
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 106
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 104
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [110]
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [107]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [108]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [116]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-brushnet",
+        "ver": "unknown",
+        "Node name for S&R": "BrushNet",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          }
+        }
+      },
+      "widgets_values": [1, 0, 10000],
+      "widgets_values_named": {
+        "scale": 1,
+        "start_at": 0,
+        "end_at": 10000
+      }
+    },
+    {
+      "id": 92,
+      "type": "BrushNetLoader",
+      "pos": [490.125238178718, -9.47359094881579],
+      "size": [315.129651468429, 84.1490407817213],
+      "flags": {
+
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "brushnet",
+          "type": "BRMODEL",
+          "links": [113]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-brushnet",
+        "ver": "unknown",
+        "Node name for S&R": "BrushNetLoader",
+        "ue_properties": {
+          "widget_ue_connectable": {
+
+          }
+        }
+      },
+      "widgets_values": [
+        "brushnet/random_mask_brushnet_ckpt/diffusion_pytorch_model.safetensors",
+        "float16"
+      ],
+      "widgets_values_named": {
+        "brushnet": "brushnet/random_mask_brushnet_ckpt/diffusion_pytorch_model.safetensors",
+        "dtype": "float16"
+      }
+    }
+  ],
+  "links": [
+    [84, 75, 0, 76, 0, "IMAGE"
+    ],
+    [85, 76, 0, 81, 0, "STRING"
+    ],
+    [87, 75, 0, 86, 0, "IMAGE"
+    ],
+    [94, 72, 1, 84, 0, "CLIP"
+    ],
+    [95, 72, 1, 82, 0, "CLIP"
+    ],
+    [97, 83, 0, 87, 0, "LATENT"
+    ],
+    [98, 87, 0, 88, 0, "IMAGE"
+    ],
+    [104, 84, 0, 91, 6, "CONDITIONING"
+    ],
+    [106, 82, 0, 91, 5, "CONDITIONING"
+    ],
+    [107, 91, 1, 83, 1, "CONDITIONING"
+    ],
+    [108, 91, 2, 83, 2, "CONDITIONING"
+    ],
+    [109, 72, 0, 91, 0, "MODEL"
+    ],
+    [110, 91, 0, 83, 0, "MODEL"
+    ],
+    [111, 75, 0, 91, 2, "IMAGE"
+    ],
+    [112, 75, 1, 91, 3, "MASK"
+    ],
+    [113, 92, 0, 91, 4, "BRMODEL"
+    ],
+    [115, 74, 0, 91, 1, "VAE"
+    ],
+    [116, 91, 3, 83, 3, "LATENT"
+    ],
+    [117, 74, 0, 87, 1, "VAE"
+    ]
+  ],
+  "groups": [],
+  "config": {
+
+  },
+  "extra": {
+    "ds": {
+      "scale": 1.3513057093104,
+      "offset": [-629.871896080831, -40.9999879995294]
+    },
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "frontendVersion": "1.57.4",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4,
+  "seed_widgets": {
+    "83": 0
+  }
+}

@@ -9,7 +9,8 @@ RequestType = Literal["退款", "退货退款", "换货", "补发", "物流异�
 
 class ChatRequest(BaseModel):
     message: str = Field(min_length=1, description="用户本轮输入")
-    session_id: str | None = Field(default=None, description="不传则新建会话")
+    session_id: str | None = Field(default=None, description="会话 id，不传则新建")
+    user_id: str = Field(default="web-user", max_length=64, description="用户标识")
 
 
 class ExtractRequest(BaseModel):

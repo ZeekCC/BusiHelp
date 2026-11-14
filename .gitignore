@@ -8,16 +8,26 @@
 __pycache__/
 *.py[cod]
 *.egg-info/
+build/
+dist/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+htmlcov/
 
 # 日志与运行产物
 *.log
 logs/
+*.pid
+
+# 临时文件
+tmp_*
+*.tmp
 
 # IDE / 系统
 .idea/
 .vscode/
 .DS_Store
 Thumbs.db
+Desktop.ini

@@ -16,6 +16,9 @@ class Settings:
     temperature: float
     token_budget: int
     disable_thinking: bool
+    database_url: str
+    tool_timeout: float
+    tool_retries: int
 
 
 def load_settings() -> Settings:
@@ -29,6 +32,12 @@ def load_settings() -> Settings:
         temperature=float(os.getenv("TEMPERATURE", "0.3")),
         token_budget=int(os.getenv("CHAT_TOKEN_BUDGET", "800")),
         disable_thinking=os.getenv("DISABLE_THINKING", "true").lower() == "true",
+        database_url=os.getenv(
+            "DATABASE_URL",
+            "mysql+pymysql://root:123456@127.0.0.1:3307/customer_service?charset=utf8mb4",
+        ),
+        tool_timeout=float(os.getenv("TOOL_TIMEOUT", "5")),
+        tool_retries=int(os.getenv("TOOL_RETRIES", "2")),
     )
 
 
