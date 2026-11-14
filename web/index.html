@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小惠 · 智能客服</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="chat-shell">
+    <header class="chat-header">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 13 6 6l6 3h8l6-3-2 7v7a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6z" />
+            <circle cx="12.5" cy="16" r="1" fill="currentColor" stroke="none" />
+            <circle cx="19.5" cy="16" r="1" fill="currentColor" stroke="none" />
+            <path d="M14 20.5c1.2 1 2.8 1 4 0" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>小惠 · 智能客服</h1>
+          <p class="status"><span class="dot"></span> ONLINE · 星选商城</p>
+        </div>
+      </div>
+      <button id="new-chat" class="new-chat" type="button">＋ 新对话</button>
+    </header>
+
+    <section id="messages" class="messages" aria-live="polite" aria-label="聊天记录"></section>
+
+    <form id="composer" class="composer">
+      <div class="input-wrap">
+        <textarea id="input" rows="1" placeholder="输入消息，和小惠聊聊吧～（回车发送 / Shift+回车换行）" autocomplete="off"></textarea>
+        <button id="send" class="send" type="submit" aria-label="发送">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12h15" />
+            <path d="m13 6 6 6-6 6" />
+          </svg>
+        </button>
+      </div>
+      <p class="disclaimer">小惠是 AI 助手，涉及具体订单会为你转接人工核实</p>
+    </form>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
